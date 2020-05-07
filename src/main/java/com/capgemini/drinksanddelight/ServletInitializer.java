@@ -1,4 +1,4 @@
-package org.drinkanddelight.rawmaterial;
+package com.capgemini.drinksanddelight;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
