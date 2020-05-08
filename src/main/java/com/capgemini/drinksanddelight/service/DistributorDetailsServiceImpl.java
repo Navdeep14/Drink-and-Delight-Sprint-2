@@ -4,8 +4,8 @@ import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.capgemini.drinksanddelight.dao.ProjectDao;
-import com.capgemini.drinksanddelight.entities.Distributordetails;
+import com.capgemini.drinksanddelight.dao.ProductOrderDao;
+import com.capgemini.drinksanddelight.entities.DistributorEntity;
 
 /*
 @author NAVDEEP TRIPATHI
@@ -17,10 +17,10 @@ public class DistributorDetailsServiceImpl implements DistributorDetailsService{
 	
 	
 	@Autowired
-	ProjectDao daoObj;
+	ProductOrderDao daoObj;
 
 	@Override
-	public List<Distributordetails> reterive() {
+	public List<DistributorEntity> reterive() {
 		
 		
 		return daoObj.reterive();

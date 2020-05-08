@@ -8,8 +8,8 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
-import com.capgemini.drinksanddelight.entities.Distributordetails;
-import com.capgemini.drinksanddelight.entities.ProductorderDetails;
+import com.capgemini.drinksanddelight.entities.DistributorEntity;
+import com.capgemini.drinksanddelight.entities.ProductOrderEntity;
 
 /*
 @author NAVDEEP TRIPATHI
@@ -17,7 +17,7 @@ import com.capgemini.drinksanddelight.entities.ProductorderDetails;
 
 @Transactional
 @Repository
-public class ProjectDaoImpl implements ProjectDao{
+public class ProjectDaoImpl implements ProductOrderDao{
 	
 	
 	
@@ -26,10 +26,10 @@ public class ProjectDaoImpl implements ProjectDao{
 	
 
 	@Override
-	public List<Distributordetails> reterive() {
+	public List<DistributorEntity> reterive() {
 		// TODO Auto-generated method stub
 		String Qstr="SELECT distributordetails from Distributordetails distributordetails";
-		TypedQuery<Distributordetails> query=entityManager.createQuery(Qstr,Distributordetails.class);
+		TypedQuery<DistributorEntity> query=entityManager.createQuery(Qstr,DistributorEntity.class);
 		System.out.println("dao impl");
 		return query.getResultList();
 	}
@@ -57,9 +57,9 @@ public class ProjectDaoImpl implements ProjectDao{
 	}
 
 	@Override
-	public ProductorderDetails trackOrder(String id) {
+	public ProductOrderEntity trackOrder(String id) {
 		// TODO Auto-generated method stub
-		ProductorderDetails object=entityManager.find( ProductorderDetails.class,id);
+		ProductOrderEntity object=entityManager.find( ProductOrderEntity.class,id);
 		
 		if(object==null)
 		{
@@ -68,7 +68,7 @@ public class ProjectDaoImpl implements ProjectDao{
 		else
 		{
 		String jpql="select productdetails from ProductorderDetails productdetails where orderId=:oid";
-		TypedQuery< ProductorderDetails> query =  entityManager.createQuery(jpql,  ProductorderDetails.class);
+		TypedQuery< ProductOrderEntity> query =  entityManager.createQuery(jpql,  ProductOrderEntity.class);
 		query.setParameter("oid", id);
 		return query.getSingleResult();
 		}

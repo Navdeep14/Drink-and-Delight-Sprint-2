@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.capgemini.drinksanddelight.entities.Distributordetails;
-import com.capgemini.drinksanddelight.entities.ProductorderDetails;
+import com.capgemini.drinksanddelight.entities.DistributorEntity;
+import com.capgemini.drinksanddelight.entities.ProductOrderEntity;
 import com.capgemini.drinksanddelight.exception.OrderIdNotFoundException;
 import com.capgemini.drinksanddelight.service.DistributorDetailsService;
 import com.capgemini.drinksanddelight.service.TrackOrderService;
@@ -37,15 +37,15 @@ public class ProjectController {
 	UpdateTrackOrderService updateObj;
 		
 	@GetMapping("/getDistributorDetails")
-    public ResponseEntity<List<Distributordetails>> getProductList() {
-			List<Distributordetails> list = serviceObj.reterive();
+    public ResponseEntity<List<DistributorEntity>> getProductList() {
+			List<DistributorEntity> list = serviceObj.reterive();
 			System.out.println("hi");
-			return new ResponseEntity<List<Distributordetails>>(list,HttpStatus.OK);
+			return new ResponseEntity<List<DistributorEntity>>(list,HttpStatus.OK);
 	}
 	
 	@GetMapping("/trackOrder/{id}")
-    public ResponseEntity<ProductorderDetails> trackOrder(@PathVariable("id") String id) throws OrderIdNotFoundException {
-			ProductorderDetails object = trackObj.trackOrder(id);
+    public ResponseEntity<ProductOrderEntity> trackOrder(@PathVariable("id") String id) throws OrderIdNotFoundException {
+			ProductOrderEntity object = trackObj.trackOrder(id);
 			
 			if(object==null)
 			{
@@ -53,7 +53,7 @@ public class ProjectController {
 			}
 			else
 			{
-			return new ResponseEntity<ProductorderDetails>(object,HttpStatus.OK);
+			return new ResponseEntity<ProductOrderEntity>(object,HttpStatus.OK);
 			}
 	}
 	

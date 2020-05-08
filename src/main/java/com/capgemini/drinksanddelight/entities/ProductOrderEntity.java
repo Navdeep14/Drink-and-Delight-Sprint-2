@@ -10,10 +10,11 @@ import org.hibernate.annotations.DynamicUpdate;
 @author NAVDEEP TRIPATHI
 */
 
+
 @Entity
 @DynamicInsert
 @DynamicUpdate
-public class ProductorderDetails {
+public class ProductOrderEntity {
 	
 	@Id
 	private String orderId;
@@ -50,12 +51,12 @@ public class ProductorderDetails {
 
 	private String location;
 	
-	public ProductorderDetails()
+	public ProductOrderEntity()
 	{
 		
 	}
 	
-	public ProductorderDetails( String name, String supplierId, double quantityValue, double quantityUnit,
+	public ProductOrderEntity( String name, String supplierId, double quantityValue, double quantityUnit,
 			double pricePerUnit, LocalDate expectedDeliveryDate, double totalPrice) {
 		super();
 		this.name = name;
