@@ -24,7 +24,7 @@ import com.capgemini.drinksanddelight.util.ExceptionConstants;
 */
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/products")
 public class ProjectController {
 	
 	@Autowired
