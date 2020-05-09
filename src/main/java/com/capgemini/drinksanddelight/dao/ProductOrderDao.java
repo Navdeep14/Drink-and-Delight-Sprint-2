@@ -20,6 +20,10 @@ public interface ProductOrderDao extends JpaRepository<ProductOrderEntity,String
 	ProductOrderEntity trackOrder(String id);
 
 	List<DistributorEntity> reterive();
+
+	ProductOrderEntity PlaceProductOrder(String orderId, ProductOrderEntity details);
+
+	List<ProductOrderEntity> fetchAll();
 	
 	
 }

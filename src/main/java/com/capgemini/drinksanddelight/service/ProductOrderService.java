@@ -9,9 +9,9 @@ public interface ProductOrderService {
 	
 	ProductOrderEntity save(ProductOrderEntity productorderentity);
 
-	ProductOrderEntity PlaceProductOrder(String orederId, String name,String distributorId,double quantityValue,double quantityUnit,double pricePerUnit,LocalDate expectedDeliveryDate,double totalPrice);
-
     List<ProductOrderEntity> fetchAll();
+
+	ProductOrderEntity PlaceProductOrder(String orederId, ProductOrderEntity details);
 
 }
 
