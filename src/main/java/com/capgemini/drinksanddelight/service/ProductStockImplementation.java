@@ -1,5 +1,6 @@
 package com.capgemini.drinksanddelight.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
@@ -29,9 +30,20 @@ public class ProductStockImplementation implements ProductStockInterface{
 
 
 	@Override
-	public ProductStockDetails UpdateProductStock(String stockId, ProductStockDetails details) {
+	public ProductStockDetails UpdateProductStock(String stockId, String name, String supplierId, double quantityValue, double quantityUnit,
+			double pricePerUnit, String warehouseId, LocalDate manufactureDate, LocalDate expiryDate,
+			String qualityCheck) {
 		ProductStockDetails productstockdetails=new ProductStockDetails();
-		productstockdetails=daoObj.UpdateProductStock(stockId,details);
+		productstockdetails.setStockId(stockId);
+		productstockdetails.setName(name);
+		productstockdetails.setSupplierId(supplierId);
+		productstockdetails.setQuantityValue(quantityValue);
+		productstockdetails.setQuantityUnit(quantityUnit);
+		productstockdetails.setPricePerUnit(pricePerUnit);
+		productstockdetails.setWarehouseId(warehouseId);
+		productstockdetails.setManufactureDate(manufactureDate);
+		productstockdetails.setExpiryDate(expiryDate);
+		productstockdetails.setQualityCheck(qualityCheck);
 		return productstockdetails;
 		
 	}
@@ -51,25 +63,21 @@ public class ProductStockImplementation implements ProductStockInterface{
 	@Override
 	public List<ProductStockDetails> retrieve() {
 		List<ProductStockDetails> productstockdetails=new ArrayList<ProductStockDetails>();
-		productstockdetails=daoObj.reterive();
+		productstockdetails=daoObj.findAll();
 		return productstockdetails;
 	}
-	
 
 
 
 
 	@Override
-	public ProductStockDetails getProductSpecs(String stockId) {
+	public String getProductName(String id) {
 		ProductStockDetails productstockdetails=new ProductStockDetails();
-		productstockdetails=daoObj.getProductSpecs(stockId);
-		return productstockdetails;
+		productstockdetails.setStockId(id);
+		String productname=productstockdetails.getProductName(id);
+		return productname;
 	}
 
-
-
-
-	
 	
 	
 

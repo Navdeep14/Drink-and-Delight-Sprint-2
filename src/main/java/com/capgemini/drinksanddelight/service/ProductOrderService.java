@@ -11,7 +11,8 @@ public interface ProductOrderService {
 
     List<ProductOrderEntity> fetchAll();
 
-	ProductOrderEntity PlaceProductOrder(String orederId, ProductOrderEntity details);
+	ProductOrderEntity PlaceProductOrder(String orederId,String name, String supplierid, double quantityValue, double quantityUnit,
+			double pricePerUnit, LocalDate expectedDeliveryDate, double totalPrice);
 
 }
 

@@ -10,7 +10,8 @@ import com.capgemini.drinksanddelight.exception.OrderIdNotFoundException;
 public interface TrackOrderService {
 	
 	
-	public ProductOrderEntity trackOrder(String id) throws OrderIdNotFoundException;
+	
+	public ProductOrderEntity trackOrder(ProductOrderEntity productorderentity) throws OrderIdNotFoundException;
 	
 
 }

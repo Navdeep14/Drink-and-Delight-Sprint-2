@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.capgemini.drinksanddelight.dao.ProductOrderDao;
+import com.capgemini.drinksanddelight.entities.ProductOrderEntity;
 import com.capgemini.drinksanddelight.exception.OrderIdNotFoundException;
 import com.capgemini.drinksanddelight.util.ExceptionConstants;
 
@@ -19,14 +20,10 @@ public class UpdateTrackOrderServiceImpl implements UpdateTrackOrderService {
 
 	@Override
 	public boolean updateTrackOrder(String orderId, String Location, LocalDate date) throws OrderIdNotFoundException {
-		// TODO Auto-generated method stub
-		boolean check= daoObj.updateTrackOrder(orderId, Location, date);
+		ProductOrderEntity productorderentity= new ProductOrderEntity();
+		boolean check= productorderentity.updateTrackOrder(orderId,Location,date);
 		
-		if(check==false)
-			throw new  OrderIdNotFoundException(ExceptionConstants .ID_NOT_EXIST);
 		return check;
-		
-		
 		
 	}
 

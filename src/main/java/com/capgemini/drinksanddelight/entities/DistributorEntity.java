@@ -1,7 +1,10 @@
 package com.capgemini.drinksanddelight.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -12,9 +15,11 @@ import org.hibernate.annotations.DynamicUpdate;
 @Entity
 @DynamicInsert
 @DynamicUpdate
+@Table(name="Distributor")
 public class DistributorEntity {
 	
 	@Id
+	@GeneratedValue
 	private String distributor_Id;
 	
 	private String distributor_Name;

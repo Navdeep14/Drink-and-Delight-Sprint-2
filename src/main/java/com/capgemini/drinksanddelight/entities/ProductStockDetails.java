@@ -1,7 +1,11 @@
 package com.capgemini.drinksanddelight.entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import org.hibernate.annotations.DynamicInsert;
@@ -18,6 +22,7 @@ public class ProductStockDetails {
 	
 
 	@Id
+	@GeneratedValue
 	private String stockId;
 	private String name;
 	private String supplierId;
@@ -151,6 +156,14 @@ public class ProductStockDetails {
 
 	public void setQualityCheck(String qualityCheck) {
 		this.qualityCheck = qualityCheck;
+	}
+	
+	public String getProductName(String id)
+	{
+		ProductStockDetails productstockdetails=new ProductStockDetails();
+		if (this.stockId==id)
+			return productstockdetails.getName();
+		return "id mismatch";
 	}
 
 

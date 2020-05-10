@@ -27,7 +27,7 @@ public class ProductOrderServiceImpl implements ProductOrderService
 	@Override
 	public ProductOrderEntity PlaceProductOrder(String orderId,ProductOrderEntity details) {
 		ProductOrderEntity productorderentity=new ProductOrderEntity();
-		productorderentity=dao.PlaceProductOrder(orderId,productorderentity);
+		productorderentity=dao.PlaceProductOrder(orderId,details);
 		return productorderentity;
 	
 	}

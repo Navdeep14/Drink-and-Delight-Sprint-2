@@ -12,13 +12,15 @@ public interface ProductStockInterface {
 	
 	ProductStockDetails save(ProductStockDetails productstockdetails);
 
-	ProductStockDetails UpdateProductStock(String stockId, ProductStockDetails details);
+	ProductStockDetails UpdateProductStock(String stockId, String name, String supplierId, double quantityValue, double quantityUnit,
+			double pricePerUnit, String warehouseId, LocalDate manufactureDate, LocalDate expiryDate,
+			String qualityCheck);
 
     List<ProductStockDetails> fetchAll();
 
 	List<ProductStockDetails> retrieve();
 
-	ProductStockDetails getProductSpecs(String id);
+	String getProductName(String id);
 
 }
 

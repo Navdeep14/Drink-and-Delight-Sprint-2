@@ -2,7 +2,10 @@ package com.capgemini.drinksanddelight.entities;
 
 import java.time.LocalDate;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -14,12 +17,14 @@ import org.hibernate.annotations.DynamicUpdate;
 @Entity
 @DynamicInsert
 @DynamicUpdate
+@Table(name="ProductOrder")
 public class ProductOrderEntity {
 	
 	@Id
+	@GeneratedValue
 	private String orderId;
 	private String name;
-	private String distributorId;
+	private String supplierId;
 	private double quantityValue;
 	private double quantityUnit;
 	private double pricePerUnit;
@@ -33,13 +38,6 @@ public class ProductOrderEntity {
 		this.orderId = orderId;
 	}
 
-	public String getDistributorId() {
-		return distributorId;
-	}
-
-	public void setDistributorId(String distributorId) {
-		this.distributorId = distributorId;
-	}
 
 	public String getLocation() {
 		return location;
@@ -56,11 +54,11 @@ public class ProductOrderEntity {
 		
 	}
 	
-	public ProductOrderEntity( String name, String supplierId, double quantityValue, double quantityUnit,
+	public ProductOrderEntity( String name, String supplierid, double quantityValue, double quantityUnit,
 			double pricePerUnit, LocalDate expectedDeliveryDate, double totalPrice) {
 		super();
 		this.name = name;
-		distributorId = supplierId;
+		supplierId = supplierid;
 		this.quantityValue = quantityValue;
 		this.quantityUnit = quantityUnit;
 		this.pricePerUnit = pricePerUnit;
@@ -77,11 +75,11 @@ public class ProductOrderEntity {
 	}
 
 	public String getSupplierId() {
-		return distributorId;
+		return supplierId;
 	}
 
 	public void setSupplierId(String supplierId) {
-		distributorId = supplierId;
+		supplierId = supplierId;
 	}
 
 	public double getQuantityValue() {
@@ -122,6 +120,17 @@ public class ProductOrderEntity {
 
 	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
+	}
+
+	public boolean updateTrackOrder(String orderId, String location, LocalDate date) {
+		ProductOrderEntity productorderentity=new ProductOrderEntity();
+		productorderentity.setOrderId(orderId);
+		productorderentity.setLocation(location);
+		productorderentity.setExpectedDeliveryDate(date);
+		if (!productorderentity.equals(null))
+			return true;
+		else
+		return false;
 	}
 	
 }
