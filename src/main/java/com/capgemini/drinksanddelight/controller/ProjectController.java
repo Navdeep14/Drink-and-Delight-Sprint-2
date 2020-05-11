@@ -32,19 +32,20 @@ import com.capgemini.drinksanddelight.util.ExceptionConstants;
 public class ProjectController {
 	
 	@Autowired
-	DistributorDetailsService serviceObj;
+	private DistributorDetailsService serviceObj;
 	
 	@Autowired
-	TrackOrderService trackObj;
+	private TrackOrderService trackObj;
 	
 	@Autowired
-	UpdateTrackOrderService updateObj;
+	private UpdateTrackOrderService updateObj;
 	
 	@Autowired
-	ProductStockInterface stockobj;
+	private ProductStockInterface stockobj;
 	
+	@SuppressWarnings("unused")
 	@Autowired
-	ProductOrderService orderobj;
+	private ProductOrderService orderobj;
 		
 	@GetMapping("/getDistributorDetails")
     public ResponseEntity<List<DistributorEntity>> getProductList() {
@@ -87,12 +88,14 @@ public class ProjectController {
 			
 	}
 	 
+	/*
 	@PutMapping("/updateProduct/{id}")
-	public ResponseEntity<ProductStockDetails> updateProductStock(@PathVariable String id, @RequestBody ProductStockDetails details ){
+	public ResponseEntity<ProductStockDetails> updateProductStock(@PathVariable String id, @RequestBody ProductOrderEntity details ){
 		ProductStockDetails list = stockobj.UpdateProductStock(id,details);
 		return new ResponseEntity<ProductStockDetails>(list,HttpStatus.OK);
 		
 	}
+	*/
 	
 	
 	@GetMapping("/getProductName/{id}")

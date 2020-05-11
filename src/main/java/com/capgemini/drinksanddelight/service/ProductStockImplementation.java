@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.capgemini.drinksanddelight.dao.ProductStockDao;
+import com.capgemini.drinksanddelight.entities.ProductOrderEntity;
 import com.capgemini.drinksanddelight.entities.ProductStockDetails;
 
 
@@ -15,7 +16,7 @@ import com.capgemini.drinksanddelight.entities.ProductStockDetails;
 public class ProductStockImplementation implements ProductStockInterface{
 
 	@Autowired
-	ProductStockDao daoObj;
+	private ProductStockDao daoObj;
 	
 	
 
@@ -24,18 +25,6 @@ public class ProductStockImplementation implements ProductStockInterface{
 	public ProductStockDetails save(ProductStockDetails productstockdetails) {
 		productstockdetails=daoObj.save(productstockdetails);
 		return productstockdetails;
-	}
-
-	
-
-
-	@Override
-	public ProductStockDetails UpdateProductStock(String stockId,ProductStockDetails details) {
-		ProductStockDetails productstockdetails=new ProductStockDetails();
-		productstockdetails.setStockId(stockId);
-		productstockdetails.setDetails(details);
-		return productstockdetails;
-		
 	}
 
 

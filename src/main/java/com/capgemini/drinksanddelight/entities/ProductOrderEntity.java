@@ -15,13 +15,10 @@ import org.hibernate.annotations.DynamicUpdate;
 
 
 @Entity
-@DynamicInsert
-@DynamicUpdate
 @Table(name="ProductOrder")
 public class ProductOrderEntity {
 	
 	@Id
-	@GeneratedValue
 	private String orderId;
 	private String name;
 	private String supplierId;
@@ -78,8 +75,8 @@ public class ProductOrderEntity {
 		return supplierId;
 	}
 
-	public void setSupplierId(String supplierId) {
-		supplierId = supplierId;
+	public void setSupplierId(String supplierid) {
+		supplierId = supplierid;
 	}
 
 	public double getQuantityValue() {
@@ -122,15 +119,31 @@ public class ProductOrderEntity {
 		this.totalPrice = totalPrice;
 	}
 
-	public boolean updateTrackOrder(String orderId, String location, LocalDate date) {
-		ProductOrderEntity productorderentity=new ProductOrderEntity();
-		productorderentity.setOrderId(orderId);
-		productorderentity.setLocation(location);
-		productorderentity.setExpectedDeliveryDate(date);
-		if (!productorderentity.equals(null))
-			return true;
-		else
-		return false;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((orderId == null) ? 0 : orderId.hashCode());
+		return result;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ProductOrderEntity other = (ProductOrderEntity) obj;
+		if (orderId == null) {
+			if (other.orderId != null)
+				return false;
+		} else if (!orderId.equals(other.orderId))
+			return false;
+		return true;
+	}
+
+	
 	
 }

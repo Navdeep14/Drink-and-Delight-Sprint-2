@@ -14,6 +14,7 @@ public interface ProductOrderService {
 	ProductOrderEntity PlaceProductOrder(String orederId,String name, String supplierid, double quantityValue, double quantityUnit,
 			double pricePerUnit, LocalDate expectedDeliveryDate, double totalPrice);
 
+    boolean updateTrackOrder(String orderId, String location, LocalDate date);
 }
 
 

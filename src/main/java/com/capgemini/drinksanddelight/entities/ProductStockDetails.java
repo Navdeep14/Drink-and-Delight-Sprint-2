@@ -13,16 +13,13 @@ import org.hibernate.annotations.DynamicUpdate;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 
-@Entity
-@DynamicInsert
-@DynamicUpdate	
+@Entity	
 @Table(name = "Stock_Details")
 public class ProductStockDetails {
 	
 	
 
 	@Id
-	@GeneratedValue
 	private String stockId;
 	private String name;
 	private String supplierId;
@@ -33,7 +30,8 @@ public class ProductStockDetails {
 	private LocalDate manufactureDate;
 	private LocalDate expiryDate;
 	private String qualityCheck;
-	private ProductStockDetails details;
+	
+	
 	
 	
 
@@ -166,26 +164,16 @@ public class ProductStockDetails {
 			return productstockdetails.getName();
 		return "id mismatch";
 	}
+	
+	
+
 
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((expiryDate == null) ? 0 : expiryDate.hashCode());
-		result = prime * result + ((manufactureDate == null) ? 0 : manufactureDate.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(pricePerUnit);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((qualityCheck == null) ? 0 : qualityCheck.hashCode());
-		temp = Double.doubleToLongBits(quantityUnit);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(quantityValue);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((stockId == null) ? 0 : stockId.hashCode());
-		result = prime * result + ((supplierId == null) ? 0 : supplierId.hashCode());
-		result = prime * result + ((warehouseId == null) ? 0 : warehouseId.hashCode());
 		return result;
 	}
 
@@ -199,57 +187,18 @@ public class ProductStockDetails {
 		if (getClass() != obj.getClass())
 			return false;
 		ProductStockDetails other = (ProductStockDetails) obj;
-		if (expiryDate == null) {
-			if (other.expiryDate != null)
-				return false;
-		} else if (!expiryDate.equals(other.expiryDate))
-			return false;
-		if (manufactureDate == null) {
-			if (other.manufactureDate != null)
-				return false;
-		} else if (!manufactureDate.equals(other.manufactureDate))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (Double.doubleToLongBits(pricePerUnit) != Double.doubleToLongBits(other.pricePerUnit))
-			return false;
-		if (qualityCheck == null) {
-			if (other.qualityCheck != null)
-				return false;
-		} else if (!qualityCheck.equals(other.qualityCheck))
-			return false;
-		if (Double.doubleToLongBits(quantityUnit) != Double.doubleToLongBits(other.quantityUnit))
-			return false;
-		if (Double.doubleToLongBits(quantityValue) != Double.doubleToLongBits(other.quantityValue))
-			return false;
 		if (stockId == null) {
 			if (other.stockId != null)
 				return false;
 		} else if (!stockId.equals(other.stockId))
 			return false;
-		if (supplierId == null) {
-			if (other.supplierId != null)
-				return false;
-		} else if (!supplierId.equals(other.supplierId))
-			return false;
-		if (warehouseId == null) {
-			if (other.warehouseId != null)
-				return false;
-		} else if (!warehouseId.equals(other.warehouseId))
-			return false;
 		return true;
 	}
 
 
-	public void setDetails(ProductStockDetails details) {
-		
-		this.details=details;
-		
-	}
+	
 
+	
 	
 	
 	

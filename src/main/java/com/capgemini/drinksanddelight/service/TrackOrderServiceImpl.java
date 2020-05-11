@@ -17,7 +17,7 @@ public class TrackOrderServiceImpl implements TrackOrderService {
 
 	
 	@Autowired
-	ProductOrderDao daoObj;
+	private ProductOrderDao daoObj;
 	
 	
 	

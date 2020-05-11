@@ -13,13 +13,13 @@ import org.hibernate.annotations.DynamicUpdate;
 */
 
 @Entity
-@DynamicInsert
-@DynamicUpdate
 @Table(name="Distributor")
 public class DistributorEntity {
 	
+
+
+
 	@Id
-	@GeneratedValue
 	private String distributor_Id;
 	
 	private String distributor_Name;
@@ -80,6 +80,32 @@ public class DistributorEntity {
 
 	public void setDistributor_Phn(String distributor_phn) {
 		distributor_Phn = distributor_phn;
+	}
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((distributor_Id == null) ? 0 : distributor_Id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DistributorEntity other = (DistributorEntity) obj;
+		if (distributor_Id == null) {
+			if (other.distributor_Id != null)
+				return false;
+		} else if (!distributor_Id.equals(other.distributor_Id))
+			return false;
+		return true;
 	}
 	
 }

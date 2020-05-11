@@ -15,7 +15,7 @@ public class ProductOrderServiceImpl implements ProductOrderService
 
 	
 	@Autowired
-	ProductOrderDao dao;
+	private ProductOrderDao dao;
 	
 	
 	@Override
@@ -40,6 +40,17 @@ public class ProductOrderServiceImpl implements ProductOrderService
 	
 	}
 
+	public boolean updateTrackOrder(String orderId, String location, LocalDate date) {
+		ProductOrderEntity productorderentity=new ProductOrderEntity();
+		productorderentity.setOrderId(orderId);
+		productorderentity.setLocation(location);
+		productorderentity.setExpectedDeliveryDate(date);
+		if (!productorderentity.equals(null))
+			return true;
+		else
+		return false;
+	}
+	
 	@Override
 	public List<ProductOrderEntity> fetchAll() {
 		 List<ProductOrderEntity>productorderentity=dao.findAll();

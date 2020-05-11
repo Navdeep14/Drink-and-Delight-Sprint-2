@@ -15,13 +15,13 @@ public class UpdateTrackOrderServiceImpl implements UpdateTrackOrderService {
 	
 	
 	@Autowired
-	ProductOrderDao daoObj;
+	private ProductOrderDao daoObj;
 	
 
 	@Override
 	public boolean updateTrackOrder(String orderId, String Location, LocalDate date) throws OrderIdNotFoundException {
 		ProductOrderEntity productorderentity= new ProductOrderEntity();
-		boolean check= productorderentity.updateTrackOrder(orderId,Location,date);
+		boolean check= ((UpdateTrackOrderService) productorderentity).updateTrackOrder(orderId,Location,date);
 		
 		return check;
 		

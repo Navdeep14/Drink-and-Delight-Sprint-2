@@ -18,7 +18,7 @@ public class DistributorDetailsServiceImpl implements DistributorDetailsService{
 	
 	
 	@Autowired
-	DistributorDetailsDao daoObj;
+	private DistributorDetailsDao daoObj;
 
 	@Override
 	public List<DistributorEntity> reterive() {
