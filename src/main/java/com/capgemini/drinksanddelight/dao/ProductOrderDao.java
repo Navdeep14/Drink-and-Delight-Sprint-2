@@ -13,7 +13,5 @@ import org.springframework.stereotype.Repository;
 public interface ProductOrderDao extends JpaRepository<ProductOrderEntity,String> {
 
 	
-	
-	
 }
 

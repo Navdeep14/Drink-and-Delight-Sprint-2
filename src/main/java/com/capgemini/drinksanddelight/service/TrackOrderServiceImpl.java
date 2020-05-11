@@ -22,11 +22,11 @@ public class TrackOrderServiceImpl implements TrackOrderService {
 	
 	
 	@Override
-	public ProductOrderEntity trackOrder(ProductOrderEntity productorderentity) throws OrderIdNotFoundException {
+	public ProductOrderEntity trackOrder(String id) throws OrderIdNotFoundException {
 		
 		ProductOrderEntity details=new ProductOrderEntity();
-		details=daoObj.save(productorderentity);
-		
+		details.setOrderId(id);
+		details=daoObj.save(details);
 		
 		return details;
 	}

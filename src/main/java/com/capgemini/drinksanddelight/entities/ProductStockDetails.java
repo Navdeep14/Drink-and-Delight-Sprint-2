@@ -33,6 +33,7 @@ public class ProductStockDetails {
 	private LocalDate manufactureDate;
 	private LocalDate expiryDate;
 	private String qualityCheck;
+	private ProductStockDetails details;
 	
 	
 
@@ -240,6 +241,13 @@ public class ProductStockDetails {
 		} else if (!warehouseId.equals(other.warehouseId))
 			return false;
 		return true;
+	}
+
+
+	public void setDetails(ProductStockDetails details) {
+		
+		this.details=details;
+		
 	}
 
 	

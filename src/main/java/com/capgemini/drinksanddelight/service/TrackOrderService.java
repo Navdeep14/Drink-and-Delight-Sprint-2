@@ -11,7 +11,7 @@ public interface TrackOrderService {
 	
 	
 	
-	public ProductOrderEntity trackOrder(ProductOrderEntity productorderentity) throws OrderIdNotFoundException;
+	public ProductOrderEntity trackOrder(String id) throws OrderIdNotFoundException;
 	
 
 }

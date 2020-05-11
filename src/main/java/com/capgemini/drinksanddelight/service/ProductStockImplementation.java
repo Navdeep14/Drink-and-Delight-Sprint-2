@@ -30,20 +30,10 @@ public class ProductStockImplementation implements ProductStockInterface{
 
 
 	@Override
-	public ProductStockDetails UpdateProductStock(String stockId, String name, String supplierId, double quantityValue, double quantityUnit,
-			double pricePerUnit, String warehouseId, LocalDate manufactureDate, LocalDate expiryDate,
-			String qualityCheck) {
+	public ProductStockDetails UpdateProductStock(String stockId,ProductStockDetails details) {
 		ProductStockDetails productstockdetails=new ProductStockDetails();
 		productstockdetails.setStockId(stockId);
-		productstockdetails.setName(name);
-		productstockdetails.setSupplierId(supplierId);
-		productstockdetails.setQuantityValue(quantityValue);
-		productstockdetails.setQuantityUnit(quantityUnit);
-		productstockdetails.setPricePerUnit(pricePerUnit);
-		productstockdetails.setWarehouseId(warehouseId);
-		productstockdetails.setManufactureDate(manufactureDate);
-		productstockdetails.setExpiryDate(expiryDate);
-		productstockdetails.setQualityCheck(qualityCheck);
+		productstockdetails.setDetails(details);
 		return productstockdetails;
 		
 	}
@@ -71,11 +61,11 @@ public class ProductStockImplementation implements ProductStockInterface{
 
 
 	@Override
-	public String getProductName(String id) {
+	public ProductStockDetails getProductName(String id) {
 		ProductStockDetails productstockdetails=new ProductStockDetails();
 		productstockdetails.setStockId(id);
 		String productname=productstockdetails.getProductName(id);
-		return productname;
+		return productstockdetails;
 	}
 
 	

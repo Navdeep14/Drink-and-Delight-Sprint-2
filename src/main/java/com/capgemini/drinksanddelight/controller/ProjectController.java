@@ -95,10 +95,10 @@ public class ProjectController {
 	}
 	
 	
-	@GetMapping("/getProductSpecs/{id}")
-	public ResponseEntity<ProductStockDetails> getProductSpecs(@PathVariable String id)
+	@GetMapping("/getProductName/{id}")
+	public ResponseEntity<ProductStockDetails> getProductName(@PathVariable String id)
 	{
-		ProductStockDetails list = stockobj.getProductSpecs(id);
+		ProductStockDetails list = stockobj.getProductName(id);
 		return new ResponseEntity<ProductStockDetails>(list,HttpStatus.OK);
 	}
 	
