@@ -8,10 +8,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.capgemini.drinksanddelight.dto.ProductDto;
 import com.capgemini.drinksanddelight.entities.DistributorEntity;
 import com.capgemini.drinksanddelight.entities.ProductOrderEntity;
 import com.capgemini.drinksanddelight.entities.ProductStockDetails;
@@ -19,8 +22,6 @@ import com.capgemini.drinksanddelight.exception.OrderIdNotFoundException;
 import com.capgemini.drinksanddelight.service.DistributorDetailsService;
 import com.capgemini.drinksanddelight.service.ProductOrderService;
 import com.capgemini.drinksanddelight.service.ProductStockInterface;
-import com.capgemini.drinksanddelight.service.TrackOrderService;
-import com.capgemini.drinksanddelight.service.UpdateTrackOrderService;
 import com.capgemini.drinksanddelight.util.ExceptionConstants;
 
 /*
@@ -35,18 +36,37 @@ public class ProjectController {
 	private DistributorDetailsService serviceObj;
 	
 	@Autowired
-	private TrackOrderService trackObj;
-	
-	@Autowired
-	private UpdateTrackOrderService updateObj;
-	
-	@Autowired
 	private ProductStockInterface stockobj;
 	
-	@SuppressWarnings("unused")
+	//@SuppressWarnings("unused")
 	@Autowired
 	private ProductOrderService orderobj;
 		
+	
+	@PostMapping("/add")
+	public ResponseEntity<ProductOrderEntity> addProduct(@RequestBody ProductDto dto){
+		ProductOrderEntity order = convertProductOrder(dto);
+		order = orderobj.save(order);	
+		ResponseEntity<ProductOrderEntity>response = new ResponseEntity<>(order, HttpStatus.OK);
+		return response;
+		
+	}
+	
+	ProductOrderEntity convertProductOrder(ProductDto dto) {
+		ProductOrderEntity order = new ProductOrderEntity();
+		order.setOrderId(dto.getOrderId());
+		order.setName(dto.getName());
+		order.setPricePerUnit(dto.getPricePerUnit());
+		order.setQuantityUnit(dto.getQuantityUnit());
+		order.setQuantityValue(dto.getQuantityValue());
+		order.setSupplierId(dto.getSupplierId());
+		order.setExpectedDeliveryDate(dto.getExpectedDeliveryDate());
+		order.setLocation(dto.getLocation());
+		order.setTotalPrice(dto.getTotalPrice());
+		return order;
+	}
+	
+	
 	@GetMapping("/getDistributorDetails")
     public ResponseEntity<List<DistributorEntity>> getProductList() {
 			List<DistributorEntity> list = serviceObj.reterive();
@@ -56,39 +76,20 @@ public class ProjectController {
 	
 	@GetMapping("/trackOrder/{id}")
     public ResponseEntity<ProductOrderEntity> trackOrder(@PathVariable("id") String id) throws OrderIdNotFoundException {
-			ProductOrderEntity object = trackObj.trackOrder(id);
-			
-			if(object==null)
-			{
-				throw new OrderIdNotFoundException(ExceptionConstants.ID_NOT_EXIST);
-			}
-			else
-			{
-			return new ResponseEntity<ProductOrderEntity>(object,HttpStatus.OK);
-			}
+			ProductOrderEntity order = orderobj.trackOrder(id);
+			return new ResponseEntity<ProductOrderEntity>(order,HttpStatus.OK);
 	}
 	
+	/*
 	@PutMapping("/update/{orderId}/{location}/{date}")
-	
-	public  boolean updateTrackOrder(@PathVariable("orderId") String id,@PathVariable("location")String location,@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) throws OrderIdNotFoundException
+	public ResponseEntity<ProductOrderEntity> updateTrackOrder(@PathVariable("orderId") String id,@PathVariable("location")String location,@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) 
 	{
+		ProductOrderEntity order = orderobj.updateTrackOrder(id, location, date);
 		
-		
-		boolean check= updateObj.updateTrackOrder(id, location, date);
-		
-		if(check==false)
-		{
-			throw new OrderIdNotFoundException(ExceptionConstants.ID_NOT_EXIST);
-			
-		}
-		else
-		{
-			return check;
-		}
 			
 	}
 	 
-	/*
+	
 	@PutMapping("/updateProduct/{id}")
 	public ResponseEntity<ProductStockDetails> updateProductStock(@PathVariable String id, @RequestBody ProductOrderEntity details ){
 		ProductStockDetails list = stockobj.UpdateProductStock(id,details);
@@ -99,17 +100,15 @@ public class ProjectController {
 	
 	
 	@GetMapping("/getProductName/{id}")
-	public ResponseEntity<ProductStockDetails> getProductName(@PathVariable String id)
+	public ResponseEntity<String> getProductName(@PathVariable String id)
 	{
-		ProductStockDetails list = stockobj.getProductName(id);
-		return new ResponseEntity<ProductStockDetails>(list,HttpStatus.OK);
+		String stockName = stockobj.getProductName(id);
+		return new ResponseEntity<String>(stockName,HttpStatus.OK);
 	}
-	
-	
 	
 	@GetMapping("/getAllProductSpecs")
     public ResponseEntity<List<ProductStockDetails>> getProductStockList() {
-			List<ProductStockDetails> list = stockobj.retrieve();
+			List<ProductStockDetails> list = stockobj.fetchAll();
 			return new ResponseEntity<List<ProductStockDetails>>(list,HttpStatus.OK);
 	}
 }

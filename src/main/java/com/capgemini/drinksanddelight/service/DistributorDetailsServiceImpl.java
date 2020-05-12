@@ -22,8 +22,7 @@ public class DistributorDetailsServiceImpl implements DistributorDetailsService{
 
 	@Override
 	public List<DistributorEntity> reterive() {
-		List<DistributorEntity> distributorentity=new ArrayList<DistributorEntity>();
-		distributorentity=daoObj.findAll();
+		List<DistributorEntity> distributorentity=daoObj.findAll();
 		return distributorentity;
 		
 	}

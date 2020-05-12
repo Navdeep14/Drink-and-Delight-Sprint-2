@@ -12,12 +12,9 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-
-@Entity	
+@Entity
 @Table(name = "Stock_Details")
 public class ProductStockDetails {
-	
-	
 
 	@Id
 	private String stockId;
@@ -30,20 +27,14 @@ public class ProductStockDetails {
 	private LocalDate manufactureDate;
 	private LocalDate expiryDate;
 	private String qualityCheck;
-	
-	
-	
-	
-
 
 	public ProductStockDetails() {
-		
+
 	}
 
-
-	public ProductStockDetails(String stockId, String name, String supplierId, double quantityValue, double quantityUnit,
-			double pricePerUnit, String warehouseId, LocalDate manufactureDate, LocalDate expiryDate,
-			String qualityCheck) {
+	public ProductStockDetails(String stockId, String name, String supplierId, double quantityValue,
+			double quantityUnit, double pricePerUnit, String warehouseId, LocalDate manufactureDate,
+			LocalDate expiryDate, String qualityCheck) {
 		super();
 		this.stockId = stockId;
 		this.name = name;
@@ -57,117 +48,93 @@ public class ProductStockDetails {
 		this.qualityCheck = qualityCheck;
 	}
 
-
 	public String getStockId() {
 		return stockId;
 	}
-
 
 	public void setStockId(String stockId) {
 		this.stockId = stockId;
 	}
 
-
 	public String getName() {
 		return name;
 	}
-
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-
 	public String getSupplierId() {
 		return supplierId;
 	}
-
 
 	public void setSupplierId(String supplierId) {
 		this.supplierId = supplierId;
 	}
 
-
 	public double getQuantityValue() {
 		return quantityValue;
 	}
-
 
 	public void setQuantityValue(double quantityValue) {
 		this.quantityValue = quantityValue;
 	}
 
-
 	public double getQuantityUnit() {
 		return quantityUnit;
 	}
-
 
 	public void setQuantityUnit(double quantityUnit) {
 		this.quantityUnit = quantityUnit;
 	}
 
-
 	public double getPricePerUnit() {
 		return pricePerUnit;
 	}
-
 
 	public void setPricePerUnit(double pricePerUnit) {
 		this.pricePerUnit = pricePerUnit;
 	}
 
-
 	public String getWarehouseId() {
 		return warehouseId;
 	}
-
 
 	public void setWarehouseId(String warehouseId) {
 		this.warehouseId = warehouseId;
 	}
 
-
 	public LocalDate getManufactureDate() {
 		return manufactureDate;
 	}
 
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	public void setManufactureDate(LocalDate manufactureDate) {
 		this.manufactureDate = manufactureDate;
 	}
 
-	
 	public LocalDate getExpiryDate() {
 		return expiryDate;
 	}
 
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	public void setExpiryDate(LocalDate expiryDate) {
 		this.expiryDate = expiryDate;
 	}
-
 
 	public String getQualityCheck() {
 		return qualityCheck;
 	}
 
-
 	public void setQualityCheck(String qualityCheck) {
 		this.qualityCheck = qualityCheck;
 	}
-	
-	public String getProductName(String id)
-	{
-		ProductStockDetails productstockdetails=new ProductStockDetails();
-		if (this.stockId==id)
-			return productstockdetails.getName();
-		return "id mismatch";
-	}
-	
-	
 
-
+	/*
+	 * public String getProductName(String id) { ProductStockDetails
+	 * productstockdetails=new ProductStockDetails(); if (this.stockId==id) return
+	 * productstockdetails.getName(); return "id mismatch"; }
+	 */
 
 	@Override
 	public int hashCode() {
@@ -176,7 +143,6 @@ public class ProductStockDetails {
 		result = prime * result + ((stockId == null) ? 0 : stockId.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -195,11 +161,4 @@ public class ProductStockDetails {
 		return true;
 	}
 
-
-	
-
-	
-	
-	
-	
 }

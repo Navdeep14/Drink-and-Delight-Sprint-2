@@ -12,9 +12,9 @@ public interface ProductStockInterface {
 
     List<ProductStockDetails> fetchAll();
 
-	List<ProductStockDetails> retrieve();
+	//List<ProductStockDetails> retrieve();
 
-	ProductStockDetails getProductName(String id);
+	String getProductName(String id);
 
 }
 
