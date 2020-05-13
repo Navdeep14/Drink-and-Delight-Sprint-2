@@ -26,6 +26,13 @@ public class DistributorDetailsServiceImpl implements DistributorDetailsService{
 		return distributorentity;
 		
 	}
+
+	@Override
+	public DistributorEntity save(DistributorEntity distributordetails) {
+		distributordetails = daoObj.save(distributordetails);
+		return distributordetails;
+		
+	}
 	
 	
 	

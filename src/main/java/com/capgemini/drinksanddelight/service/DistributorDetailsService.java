@@ -12,6 +12,8 @@ public interface DistributorDetailsService {
 	
 	
 	public List<DistributorEntity> reterive();
+
+	public DistributorEntity save(DistributorEntity distributordetails);
 	
 	
 	

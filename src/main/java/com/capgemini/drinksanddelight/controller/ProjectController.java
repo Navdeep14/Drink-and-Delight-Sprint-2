@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.capgemini.drinksanddelight.dto.DistributorDto;
 import com.capgemini.drinksanddelight.dto.ProductDto;
+import com.capgemini.drinksanddelight.dto.ProductStockDto;
 import com.capgemini.drinksanddelight.entities.DistributorEntity;
 import com.capgemini.drinksanddelight.entities.ProductOrderEntity;
 import com.capgemini.drinksanddelight.entities.ProductStockDetails;
@@ -43,7 +45,7 @@ public class ProjectController {
 	private ProductOrderService orderobj;
 		
 	
-	@PostMapping("/add")
+	@PostMapping("/addproduct")
 	public ResponseEntity<ProductOrderEntity> addProduct(@RequestBody ProductDto dto){
 		ProductOrderEntity order = convertProductOrder(dto);
 		order = orderobj.save(order);	
@@ -52,7 +54,7 @@ public class ProjectController {
 		
 	}
 	
-	ProductOrderEntity convertProductOrder(ProductDto dto) {
+	private ProductOrderEntity convertProductOrder(ProductDto dto) {
 		ProductOrderEntity order = new ProductOrderEntity();
 		order.setOrderId(dto.getOrderId());
 		order.setName(dto.getName());
@@ -64,6 +66,30 @@ public class ProjectController {
 		order.setLocation(dto.getLocation());
 		order.setTotalPrice(dto.getTotalPrice());
 		return order;
+	}
+	
+	private ProductStockDetails convertProductStock(ProductStockDto stockdto) {
+		ProductStockDetails stockdetails = new ProductStockDetails();
+		stockdetails.setStockId(stockdto.getStockId());
+		stockdetails.setName(stockdto.getName());
+		stockdetails.setPricePerUnit(stockdto.getPricePerUnit());
+		stockdetails.setQuantityUnit(stockdto.getQuantityUnit());
+		stockdetails.setQuantityValue(stockdto.getQuantityValue());
+		stockdetails.setSupplierId(stockdto.getSupplierId());
+		stockdetails.setExpiryDate(stockdto.getExpiryDate());
+		stockdetails.setWarehouseId(stockdto.getWarehouseId());
+		stockdetails.setManufactureDate(stockdto.getManufactureDate());
+		stockdetails.setQualityCheck(stockdto.getQualityCheck());
+		return stockdetails;
+	}
+	
+	private DistributorEntity convertDistributorEntity(DistributorDto disdto) {
+		DistributorEntity distributordetails = new DistributorEntity();
+		distributordetails.setDistributor_Id(disdto.getDistributor_Id());
+		distributordetails.setDistributor_Name(disdto.getDistributor_Name());
+		distributordetails.setDistributor_Address(disdto.getDistributor_Address());
+		distributordetails.setDistributor_Phn(disdto.getDistributor_Phn());
+		return distributordetails;
 	}
 	
 	
@@ -111,4 +137,27 @@ public class ProjectController {
 			List<ProductStockDetails> list = stockobj.fetchAll();
 			return new ResponseEntity<List<ProductStockDetails>>(list,HttpStatus.OK);
 	}
+	
+	@PostMapping("/addstock")
+	public ResponseEntity<ProductStockDetails> addStock(@RequestBody ProductStockDto stockdto){
+		ProductStockDetails stockdetails = convertProductStock(stockdto);
+		stockdetails = stockobj.save(stockdetails);	
+		ResponseEntity<ProductStockDetails>response = new ResponseEntity<>(stockdetails, HttpStatus.OK);
+		return response;
+		
+	}
+	
+	@PostMapping("/adddistributor")
+	public ResponseEntity<DistributorEntity> addDistributor(@RequestBody DistributorDto disdto){
+		DistributorEntity distributordetails = convertDistributorEntity(disdto);
+		distributordetails = serviceObj.save(distributordetails);	
+		ResponseEntity<DistributorEntity>response = new ResponseEntity<>(distributordetails, HttpStatus.OK);
+		return response;
+		
+	}
+
+	
+	
+
+	
 }
