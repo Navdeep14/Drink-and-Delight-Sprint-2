@@ -1,0 +1,63 @@
+<br>
+<br>
+<br>
+<div class="container-fluid">
+  <div class="alert alert-danger" *ngIf="errorinfo!=undefined">{{errorinfo.message}} </div>
+<form #frm="ngForm" class="form-inline">
+
+    <tr>
+      <th><label><b>OrderId: </b></label></th>
+      <th><div style="width: max-content;"><input type="text"  minlength="3" maxlength="8" class="form-control search-query"  id="inputorderid" placeholder="enter orderId" name=orderId [(ngModel)]="orderId" #orderid="ngModel" required pattern="^[0-9]*"><br>
+        <div *ngIf="orderid.invalid && (orderid.dirty || orderid.touched)" class="text text-danger">
+          <div *ngIf="orderid.errors.required">Please enter the orderid </div>
+          <div *ngIf="orderid.errors.minlength">orderid should be minimum 3 characters.</div>
+    
+        </div>
+         </div>
+      </th>
+      <th><button type="submit" class="btn btn-secondary" [disabled]="!frm.valid" (click)="getProductOrderIdDetails()">Submit</button></th>
+    </tr>
+  
+</form>
+</div>
+<br>
+<br>
+
+
+ 
+  
+
+
+  <div class="container-fluid" *ngIf=getOrderIdTable >
+    <table class="table table-bordered">
+        <tr>
+            <th><b>orderId</b></th>
+            <th><b>name</b></th>
+            <th><b>distributorId</b></th>
+            <th><b>quantityValue</b></th>
+            <th><b>quantityUnit</b></th>
+            <th><b>expectedDeliveryDate</b></th>
+            <th><b>priceperunit</b></th>
+            <th><b>totalPrice</b></th>
+            <th><b>location</b></th>
+            <th><b>delivery status</b></th>
+
+            
+        </tr>
+
+
+        <tr>
+          
+            <th>{{orders.orderId}} </th>
+            <th>{{orders.name}} </th>
+            <th>{{orders. distributorId}} </th>
+            <th>{{orders.quantityValue}} </th>
+            <th>{{orders.quantityUnit}} </th>
+            <th>{{orders.expectedDeliveryDate}} </th>
+            <th>{{orders.pricePerUnit}} </th>
+            <th>{{orders.totalPrice}} </th>
+            <th>{{orders.location}} </th>
+            <th>{{orders.deliveryStatus}} </th>
+            
+        </tr>
+    </table>
