@@ -1,0 +1,67 @@
+<div align="center">
+<h1>Add Distributor Details</h1>
+<div class="container" style="margin-top: 70px; margin-left: 180px;">
+<form #form = "ngForm" (ngSubmit)="form.valid && addDistributor(form)">
+    <div>
+        <label>Distributor id</label>
+        <input type="number" name="id" ngModel #idCtrl=ngModel required minlength="2">
+        <div *ngIf="idCtrl.errors!=null && idCtrl.errors.required">
+             id is required
+        </div>
+        <div *ngIf ="idCtrl.errors!=null && idCtrl.errors.minlength">
+            Min length should be 3
+        </div>
+    </div>
+    <br>
+    <div>
+        <label>Distributor Name</label>
+        <input type="text" name="name" ngModel #nameCtrl=ngModel required minlength="4">
+        <div *ngIf="nameCtrl.errors!=null && nameCtrl.errors.required">
+            Name is required
+        </div>
+        <div *ngIf ="nameCtrl.errors!=null && nameCtrl.errors.minlength">
+            Min length should be 4
+        </div>
+    </div>
+    <br>
+    <div>
+        <label>Distributor Address </label>
+        <input type="text" name="address" ngModel #addressCtrl=ngModel required minlength="5">
+        <div *ngIf="addressCtrl.errors!=null && addressCtrl.errors.required">
+            Address is required
+        </div>
+        <div *ngIf ="addressCtrl.errors!=null && addressCtrl.errors.minlength">
+            Min length should be 5
+        </div>
+    </div>
+    <br>
+    <div>
+        <label>Distributor Phone</label>
+        <input type="tel" name="phone" ngModel #phoneCtrl=ngModel required minlength="10">
+        <div *ngIf="phoneCtrl.errors!=null && phoneCtrl.errors.required">
+            Phone number is required
+        </div>
+        <div *ngIf ="phoneCtrl.errors!=null && phoneCtrl.errors.minlength">
+            Min length should be 10
+        </div>
+    </div>
+
+    <br>
+     <button class="btn btn-lg btn-primary" type="submit">Add Distributor</button>
+
+</form>
+</div>
+<br>
+    <div *ngIf="addedDistributor!==null">
+        <h3>Distributor added</h3> 
+        <br>Id={{addedDistributor.distributorId}}
+        <br>Name={{addedDistributor.distributorName}}
+    </div>
+
+<br>
+    <br>
+    <li>Existing Distributor Details.
+  <button>  <a href="" routerLink="../list-distributor">Distributor details</a></button>
+</li>
+
+</div>

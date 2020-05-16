@@ -1,0 +1,47 @@
+<div align="center">
+<h1>Distributor List</h1>
+<table border="1">
+    <tr>
+        <th>Distributor Id</th>
+        <th>Distributor Name</th>
+        <th>Distributor Address</th>
+        <th>Distributor PhoneNo</th>
+    </tr>
+
+    <tr *ngFor="let distributor of distributorArray">
+        <td>{{distributor.distributorId}}</td>
+        <td>{{distributor.distributorName}}</td>
+        <td>{{distributor.distributorAddress}}</td>
+        <td>{{distributor.distributorPhoneNo}}</td>
+    </tr>
+</table>
+
+<br>
+<br>
+<form #form ="ngForm"  (ngSubmit)="form.valid && fetchDistributorById(form)">
+    <div>
+        <label>Distributor ID</label>
+        <div>
+            <label>id</label>
+            <input type="number" name="id" ngModel #idCtrl=ngModel required minlength="2">
+            <div *ngIf="idCtrl.errors!=null && idCtrl.errors.required">
+                 id is required
+            </div>
+            <div *ngIf ="idCtrl.errors!=null && idCtrl.errors.minlength">
+                Min length should be 3
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-lg btn-primary" type="submit">Find Distributor</button>
+</form>
+<br>
+<div *ngIf="fetchedDistributor!==null">
+    <br>Id = {{fetchedDistributor.distributorId}}
+    <br>Name = {{fetchedDistributor.distributorName}}
+</div>
+
+<div *ngIf="foundStatus=='notfound'">
+    Distributor not found !
+    </div>
+    </div>

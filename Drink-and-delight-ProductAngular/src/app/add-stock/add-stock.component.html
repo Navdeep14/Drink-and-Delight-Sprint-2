@@ -1,0 +1,141 @@
+
+<div align="center">
+        <h1>Add Stock Details</h1>
+    <div class="container" style="margin-top: 70px; margin-left: 150px;">
+<form #stockForm ="ngForm" (ngSubmit)="stockForm.valid && addStock(stockForm)">
+    <div class="form-group">
+        <label>stock id</label>
+        <input type="text" class="form-control" name="sid" ngModel #sidCtrl=ngModel required minlength="2">
+        <div *ngIf="sidCtrl.errors!=null && sidCtrl.errors.required">
+            Stock id is required
+        </div>
+        <div *ngIf ="sidCtrl.errors!=null && sidCtrl.errors.minlength">
+            Min length should be 2
+        </div>
+    </div>
+<br>
+    <div class="form-group">
+        <label>order id</label>
+        <input type="text" class="form-control" name="oid" ngModel #oidCtrl=ngModel required minlength="2">
+        <div *ngIf="oidCtrl.errors!=null && oidCtrl.errors.required">
+            Order id is required
+        </div>
+        <div *ngIf ="oidCtrl.errors!=null && oidCtrl.errors.minlength">
+            Min length should be 2
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <label>Stock Name</label>
+        <input type="text" class="form-control" name="name" ngModel #nameCtrl=ngModel required minlength="2">
+        <div *ngIf="nameCtrl.errors!=null && nameCtrl.errors.required">
+            Stock Name is required
+        </div>
+        <div *ngIf ="nameCtrl.errors!=null && nameCtrl.errors.minlength">
+            Min length should be 2
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <label>Price per unit</label>
+        <input type="number" class="form-control" name="price_unit" ngModel #price_unitCtrl=ngModel required>
+        <div *ngIf="price_unitCtrl.errors!=null && price_unitCtrl.errors.required">
+            Price  is required
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <label>Quantity Value</label>
+        <input type="number" class="form-control" name="quantityValue" ngModel #quantityValueCtrl=ngModel required>
+        <div *ngIf="quantityValueCtrl.errors!=null && quantityValueCtrl.errors.required">
+            Quantity Value is required
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <label>Quantity Unit</label>
+        <input type="number" class="form-control" name="quantityUnit" ngModel #quantityUnitCtrl=ngModel required>
+        <div *ngIf="quantityUnitCtrl.errors!=null && quantityUnitCtrl.errors.required">
+            Quantity Unit is required
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <label>Price</label>
+        <input type="number" class="form-control" name="price" ngModel #priceCtrl=ngModel required>
+        <div *ngIf="priceCtrl.errors!=null && priceCtrl.errors.required">
+            Price is required
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <label>warehouse id</label>
+        <input type="text" class="form-control" name="wid" ngModel #widCtrl=ngModel required minlength="2">
+        <div *ngIf="widCtrl.errors!=null && widCtrl.errors.required">
+            Warehouse id is required
+        </div>
+        <div *ngIf ="widCtrl.errors!=null && widCtrl.errors.minlength">
+            Min length should be 2
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <label>Delivery Date</label>
+        <input type="date"class="form-control" name="delivery" ngModel #deliveryCtrl=ngModel required>
+        <div *ngIf="deliveryCtrl.errors!=null && deliveryCtrl.errors.required">
+            Date is required
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <label>Manufacturing Date</label>
+        <input type="date"class="form-control" name="manu" ngModel #manuCtrl=ngModel required>
+        <div *ngIf="manuCtrl.errors!=null && manuCtrl.errors.required">
+            Date is required
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <label>Expiry Date</label>
+        <input type="date"class="form-control" name="exp" ngModel #expCtrl=ngModel required>
+        <div *ngIf="expCtrl.errors!=null && expCtrl.errors.required">
+            Date is required
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <label>Quality Check</label>
+        <input type="text" class="form-control" name="check" ngModel #checkCtrl=ngModel required>
+        <div *ngIf="checkCtrl.errors!=null && checkCtrl.errors.required">
+           Check required
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <label>Process Date</label>
+        <input type="date" class="form-control" name="procs" ngModel #procsCtrl=ngModel required>
+        <div *ngIf="procsCtrl.errors!=null && procsCtrl.errors.required">
+            Date is required
+        </div>
+    </div>
+    <br>
+     <button class="btn btn-lg btn-primary" type="submit">Add Stock</button>
+
+</form>
+</div>
+<br>
+    <div *ngIf="addedStock!==null">
+        <h3>Stock added</h3> 
+        Stock Id={{addedStock.stockId}}
+        Order Id={{addedStock.orderId}}
+        Stock Name={{addedStock.name}}
+        Delivery Date={{addedStock.deliveryDate}}
+    </div>
+
+    <br>
+    <br>
+    <li>Existing Stock Details.
+    <button><a href="" routerLink="../list-stock">Stock details</a></button>
+</li>
+
+</div>

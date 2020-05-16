@@ -1,37 +1,41 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DistributorDetailsComponent } from './distributor-details/distributor-details.component';
-import { UpdateOrderComponent } from './update-order/update-order.component';
-import { TrackOrderComponent } from './track-order/track-order.component';
-import { HomeComponent } from './home/home.component';
-import { ProductDetailsComponent } from './product-details/product-details.component';
-
-
-
-
-
-
-
-
-
+import { AddStockComponent } from './add-stock/add-stock.component';
+import { ListStockComponent } from './list-stock/list-stock.component';
+import { AddDistributorComponent } from './add-distributor/add-distributor.component';
+import { ListDistributorComponent } from './list-distributor/list-distributor.component';
+import { StockMgtComponent } from './stock-mgt/stock-mgt.component';
 
 
 const routes: Routes = [
-  { path: 'distributorDetails', component: DistributorDetailsComponent },
-  { path: "updateOrder", component: UpdateOrderComponent  },
-  {path:"trackOrder",component:TrackOrderComponent},
-  {  path :'home',component:HomeComponent},
-  { path : "productdetails",component: ProductDetailsComponent}
-
-  
-  
+  {
+    path:'stock-mgt',
+    component:StockMgtComponent
+  }
+  ,
+  {
+    path:'add-stock',
+    component: AddStockComponent
+  }
+  ,
+  {
+    path:'list-stock',
+    component:ListStockComponent
+  }
+  ,
+  {
+    path:'add-distributor',
+    component:AddDistributorComponent
+  }
+  ,
+  {
+    path:"list-distributor",
+    component:ListDistributorComponent
+  }
 ];
 
-
-
-
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{useHash: true})],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

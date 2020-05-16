@@ -1,0 +1,80 @@
+<div class="container" style="margin-top: 70px; margin-left: 300px;">
+<h1>Product Stock List</h1>
+<table border="1">
+    <tr>
+        <th>Stock Id</th>
+        <th>Order Id</th>
+        <th>Stock Name</th>
+        <th>Price</th>
+        <th>Delivery Date</th>
+    </tr>
+
+    <tr *ngFor="let stock of stockArray">
+        <td>{{stock.stockId}}</td>
+        <td>{{stock.orderId}}</td>
+        <td>{{stock.name}}</td>
+        <td>{{stock.price}}</td>
+        <td>{{stock.deliveryDate}}</td>
+    </tr>
+</table>
+
+<br>
+<br>
+<form #form ="ngForm"  (ngSubmit)="form.valid && findStockById(form)">
+    <div>
+        <label>Order ID</label>
+        <div>
+            <label>order id</label>
+            <input type="text" name="id" ngModel #idCtrl=ngModel required minlength="2">
+            <div *ngIf="idCtrl.errors!=null && idCtrl.errors.required">
+                Order id is required
+            </div>
+            <div *ngIf ="idCtrl.errors!=null && idCtrl.errors.minlength">
+                Min length should be 2
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-lg btn-primary" type="submit">Find Stock</button>
+</form>
+<div *ngIf="fetched!==null">
+    Stock id = {{fetched.stockId}}
+    Order id = {{fetched.orderId}}
+</div>
+
+<br>
+<div *ngIf="foundStatus=='notfound'">
+    Stock not found !
+    </div>
+
+<!--
+<br>
+<br>
+<form #updateForm = "ngForm"   (ngSubmit)="updateForm.valid && updateStock(updateForm)">
+    <div>
+        <label>stock id</label>
+        <input type="text" name="id" ngModel #idCtrl=ngModel required minlength="2">
+        <div *ngIf="idCtrl.errors!=null && idCtrl.errors.required">
+            Stock id is required
+        </div>
+        <div *ngIf ="idCtrl.errors!=null && idCtrl.errors.minlength">
+            Min length should be 2
+        </div>
+    </div>
+
+    <div>
+        <label>Delivery Date</label>
+        <input type="date" name="date" ngModel #dateCtrl=ngModel required>
+        <div *ngIf="dateCtrl.errors!=null && dateCtrl.errors.required">
+            Date is required
+        </div>
+    </div>
+
+     <button class="btn btn-lg btn-primary" type="submit">Update Stock</button>
+</form>
+</div>
+<div *ngIf="updatedStock!==null">
+    Stock ID = {{updatedStock.stockId}}
+    Delivery date = {{updatedStock.deliveryDate}}
+</div>
+-->
